@@ -65,7 +65,7 @@ function runFriendsQuery() {
                         $("<h2>").text("You have a high compatability score with this person of: " + compatabilityScore + "%"),
                         $("<br>"),
                         $("<h2>").text("Become freinds with them on facebook at: "),
-                        $("<h2>").html("<a href="+friendData[i].friendFB +" target='blank'>" +friendData[i].friendFB + "</a>")
+                        $("<h2>").html("<a href=" + friendData[i].friendFB + " target='blank'>" + friendData[i].friendFB + "</a>")
                     );
                 }
                 // compatability score logic only shows compatability score if there is one.
