@@ -3,19 +3,49 @@
         background: url("https://media0.giphy.com/media/26ufcYAkp8e66vanu/giphy.gif?cid=3640f6095c196e07436d654a2eebe3f9");
         background-size: fit-content; 
     }
+    /* jumbotron styling */
+    .jumbotron {
+      background: pink;
+      opacity: .9;
+    }
+    h1 {
+      color: blue;
+    }
     
     /* headers styling */
-    h2 {
-        color: red;
+    h2:first-child{
+      background: midnightblue;
+      color: lightblue;
     }
+    h2 {
+      color: blue;
+    }
+    h2:last-child {
+      border-bottom: 10px solid red;
+    }
+    /* card styling */
     .card {
-      background: transparent;
+      background: gray;
+      opacity: 0.75;
+      transition: opacity .75s;
     }
     .card-header {
       background: rgb(0, 142, 185);
       color: white;
     }
-    /* test */
-    h3 {
-        color: blue;
+    .card:hover {
+      opacity: 0.97;
     }
+    /* label for input styling */
+    label {
+      color: deepskyblue;
+      width: 100%;
+      font-size: 1.5em;
+      border-bottom: 10px solid midnightblue
+    }
+    /* button styling */
+    .submit{
+      width: 100px;
+      margin: auto;
+    }
+

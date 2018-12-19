@@ -15,53 +15,7 @@
 </head>
 
 <body>
-    <style>
-        /* body styling */
-                body {
-                  background: url("https://media0.giphy.com/media/26ufcYAkp8e66vanu/giphy.gif?cid=3640f6095c196e07436d654a2eebe3f9");
-                  background-size: fit-content; 
-              }
-              /* jumbotron styling */
-              .jumbotron {
-                background: pink;
-                opacity: .9;
-              }
-              h1 {
-                color: blue;
-              }
-              
-              /* headers styling */
-              h2:first-child{
-                background: midnightblue;
-                color: lightblue;
-              }
-              h2 {
-                  color: blue;
-              }
-              h2:last-child {
-                border-bottom: 10px solid red;
-              }
-              /* card styling */
-              .card {
-                background: gray;
-                opacity: 0.9;
-              }
-              .card-header {
-                background: rgb(0, 142, 185);
-                color: white;
-              }
-              label{
-                color: deepskyblue;
-                width: 100%;
-                font-size: 1.5em;
-                border-bottom: 10px solid midnightblue
-              }
-              /* button styling */
-              .submit{
-                width: 100px;
-                margin: auto;
-              }
-            </style>
+
     <div class="container">
 
         <!-- Header -->
@@ -88,7 +42,7 @@
                     </div>
                     <div class="card-body text-right">
                         <form role="form">
-                            <div class="form-group">
+                            <div class="form-group" action="/api/freinds">
                                 <label for="friend-name">Name*</label>
                                 <input type="text" class="form-control text-right" id="friend-name" required>
                             </div>
@@ -99,6 +53,10 @@
                             <div class="form-group">
                                 <label for="friend-gender">Gender*</label>
                                 <input type="text" class="form-control text-right" id="friend-gender" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="friend-FB">Facebook Link(To be used only if you get over a 60% match:)*</label>
+                                <input type="text" class="form-control text-right" id="friend-FB" required>
                             </div>
                             <div class="form-group">
                                 <label for="ans1">It's important for you to be around your freinds everyday.</label>
@@ -237,58 +195,10 @@
         </footer>
 
     </div>
+    <!-- link the home.js for loading from the server and perform compatability calculations -->
+    <script src="assets/js/home.js"></script>
+    <!-- BELOW CODE IS CRITICAL. IT HANDLES HOW FORM DATA IS SENT TO OUR SERVER -->
 
 </body>
 
 </html>
-
-<!-- BELOW CODE IS CRITICAL. IT HANDLES HOW FORM DATA IS SENT TO OUR SERVER -->
-<script type="text/javascript">
-
-    // create the submit fucntion that will grab the data and reset the survey
-    $(".submit").on("click", function (event) {
-        event.preventDefault();
-
-        // create array for answersArray value can be stored
-        var array = [];
-        var i = 1;
-        while ($("#ans" + i + "").val() != null) {
-            array.push($("#ans" + i + "").val());
-            i++;
-        };
-        console.log(array);
-
-
-        // Here we grab the form elements
-        var newFriend = {
-            friendName: $("#friend-name").val().trim(),
-            friendAge: $("#friend-age").val().trim(),
-            friendGender: $("#friend-gender").val().trim(),
-            answerArray: array
-        };
-
-        console.log(newFriend);
-
-
-        $.post("/api/friends", newFriend,
-            function (data) {
-
-                alert("Your name and profile has been added to the database!");
-
-                // Clear the form when submitting
-                $("#friend-name").val("");
-                $("#friend-age").val("");
-                $("#friend-gender").val("");
-                // need to reset i back to 1 from previous time we used it
-                i = 1;
-                while ($("#ans" + i + "").val() != null) {
-                    $("#ans" + i + "").val("1");
-                    i++;
-                };
-                $("#").val("");
-
-            });
-
-    });
-
-</script>

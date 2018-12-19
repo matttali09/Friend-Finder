@@ -15,51 +15,7 @@
 </head>
 
 <body>
-  <style>
-    /* body styling */
-      body {
-        background: url("https://media0.giphy.com/media/26ufcYAkp8e66vanu/giphy.gif?cid=3640f6095c196e07436d654a2eebe3f9");
-        background-size: fit-content; 
-    }
-    /* jumbotron styling */
-    .jumbotron {
-      background: pink;
-      opacity: .9;
-    }
-    h1 {
-      color: blue;
-    }
-    
-    /* headers styling */
-    h2:first-child{
-      background: midnightblue;
-      color: lightblue;
-    }
-    h2 {
-      color: blue;
-    }
-    h2:last-child {
-      border-bottom: 10px solid red;
-    }
-    /* card styling */
-    .card {
-      background: gray;
-      opacity: 0.9;
-    }
-    .card-header {
-      background: rgb(0, 142, 185);
-      color: white;
-    }
-    label{
-      font-size: 48px;
-    }
-    /* button styling */
-    .submit{
-      width: 100px;
-      margin: auto;
-    }
-  </style>
-
+  
   <div class="container">
 
     <!-- Header -->
@@ -83,7 +39,7 @@
             <h4>Your Profile</h4>
           </div>
           <div class="card-body text-center">
-            <ul id="userInfo" class="list-group"><label class="text-center" for="user-name">Enter Your Name</label>
+            <ul id="userInfo" class="list-group"><label class="text-center" for="user-name">Enter Your Name (if you have already completed the survey) to see your compatability scores with our other users!</label>
               <input type="text" class="form-control text-center" id="user-name" required>
               <button type="submit" class="btn btn-primary submit">Submit</button></ul>
           </div>
@@ -110,117 +66,9 @@
 
   </div>
 
+  <!-- link the home.js for loading from the server and perform compatability calculations -->
+  <script src="assets/js/home.js"></script>
+
 </body>
-
-
-<!-- BELOW CODE IS CRITICAL. IT HANDLES HOW FORM DATA IS LOADED FROM OUR SERVER -->
-<script type="text/javascript">
-
-  // initialize user name string and chosen boolean
-  var userName;
-  var chosen;
-  // create a submit function that captures the user name and removes the input field so it cannot be used again unless refreshed and also empties the friendsList so the query can be run again without repeat results
-  $(".submit").click(function () {
-    userName = $("#user-name").val().trim();
-    chosen = true
-    $("#friendList").empty();
-    $("#userInfo").empty();
-    runFriendsQuery();
-  });
-
-
-
-  // function fro the ajax method to populate the fields.
-  function runFriendsQuery() {
-    // The AJAX function uses the URL of our API to GET the data associated with it (initially set to localhost)
-    $.ajax({ url: "/api/friends", method: "GET" })
-      .then(function (friendData) {
-
-        // Here we then log the friendData to console, where it will show up as an object.
-        console.log(friendData);
-        console.log("------------------------------------");
-
-        // Loop through and display each of the customers
-        for (var i = 0; i < friendData.length; i++) {
-
-          // Get a reference to the friendsList element and populate it with friends or the user if friendName = UserName
-          var friendsList = $("#friendList");
-          var userNameCard = $("#userInfo");
-
-          // setup a userArray for compatability score checks
-          if (userName === friendData[i].friendName) {
-            var userArray = friendData[i].answerArray
-          }
-          console.log(userArray)
-
-          // set up a compatability score
-          var compatabilityScore;
-          if (chosen) {
-            // loop through bouth arrays and add one for every answer that is the same
-            for (var j = 0; j < friendData[i].answerArray; j++) {
-              if (friendData[i].answerArray === userArray[j]) {
-                compatabilityScore++;
-              }
-              compatabilityScore = ((compatabilityScore / 12) * 100) + "%"
-            }
-
-          }
-          console.log(compatabilityScore)
-
-          // Then display the fields in the HTML
-          var listItem = $("<li class='card list-group-item mt-4 mb-5'>");
-
-          // compatability score logic
-          if (compatabilityScore != null) {
-            listItem.append(
-              $("<h2>").text("Friends Name: " + friendData[i].friendName),
-              $("<hr>"),
-              $("<h2>").text("age: " + friendData[i].friendAge),
-              $("<h2>").text("gender: " + friendData[i].friendGender),
-
-              $("<h2>").text("Compatability score: " + compatabilityScore)
-            );
-          }
-          else {
-            listItem.append(
-              $("<h2>").text("Friends Name: " + friendData[i].friendName),
-              $("<hr>"),
-              $("<h2>").text("age: " + friendData[i].friendAge),
-              $("<h2>").text("gender: " + friendData[i].friendGender),
-
-              $("<h2>").text("Take the quiz to check your compatability with others.")
-            );
-          }
-          if (friendData[i].friendName === userName) {
-            userNameCard.append(listItem);
-          }
-          else {
-            friendsList.append(listItem);
-          }
-        }
-      });
-  }
-
-
-
-  // This function resets all of the data in our tables. This is intended to let you restart a demo.
-  function clearUser() {
-    alert("Clearing...");
-
-    // Clear the current user from the server and then empty the User element on the client
-    $.ajax({ url: "/api/clear", method: "POST" }).then(function () {
-      $("#UserInfo").empty();
-    });
-  }
-
-  $("#clear").on("click", clearUser);
-
-
-  // Run Queries!
-  // ==========================================
-  runFriendsQuery();
-
-
-</script>
 
 </html>
