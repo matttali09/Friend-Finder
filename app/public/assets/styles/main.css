@@ -1,0 +1,21 @@
+    /* body styling */
+    body {
+        background: url("https://media0.giphy.com/media/26ufcYAkp8e66vanu/giphy.gif?cid=3640f6095c196e07436d654a2eebe3f9");
+        background-size: fit-content; 
+    }
+    
+    /* headers styling */
+    h2 {
+        color: red;
+    }
+    .card {
+      background: transparent;
+    }
+    .card-header {
+      background: rgb(0, 142, 185);
+      color: white;
+    }
+    /* test */
+    h3 {
+        color: blue;
+    }

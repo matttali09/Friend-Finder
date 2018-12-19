@@ -8,13 +8,57 @@
   <!-- Latest compiled and minified CSS & JS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="../assets/styles/main.css">
+  <link rel="stylesheet" type="text/css" media="screen" href="assets/styles/main.css">
   <script src="https://code.jquery.com/jquery.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
 </head>
 
 <body>
+  <style>
+    /* body styling */
+      body {
+        background: url("https://media0.giphy.com/media/26ufcYAkp8e66vanu/giphy.gif?cid=3640f6095c196e07436d654a2eebe3f9");
+        background-size: fit-content; 
+    }
+    /* jumbotron styling */
+    .jumbotron {
+      background: pink;
+      opacity: .9;
+    }
+    h1 {
+      color: blue;
+    }
+    
+    /* headers styling */
+    h2:first-child{
+      background: midnightblue;
+      color: lightblue;
+    }
+    h2 {
+      color: blue;
+    }
+    h2:last-child {
+      border-bottom: 10px solid red;
+    }
+    /* card styling */
+    .card {
+      background: gray;
+      opacity: 0.9;
+    }
+    .card-header {
+      background: rgb(0, 142, 185);
+      color: white;
+    }
+    label{
+      font-size: 48px;
+    }
+    /* button styling */
+    .submit{
+      width: 100px;
+      margin: auto;
+    }
+  </style>
 
   <div class="container">
 
@@ -26,19 +70,22 @@
       <br>
 
       <div>
-        <a href="/survey"><button class="btn btn-lg btn-primary"><span class="fa fa-heart"></span> Take the Fiendship survey! <span class="fa fa-heart"></span></button></a>
+        <a href="/survey"><button class="btn btn-lg btn-primary"><span class="fa fa-heart"></span> Take the Fiendship
+            survey! <span class="fa fa-heart"></span></button></a>
       </div>
     </div>
 
     <div class="row">
       <div class="col-lg-12">
         <!-- Current Matches card -->
-        <div class="card">
+        <div class="card mb-5">
           <div class="card-header">
             <h4>Your Profile</h4>
           </div>
-          <div class="card-body">
-            <ul id="userInfo" class="list-group"></ul>
+          <div class="card-body text-center">
+            <ul id="userInfo" class="list-group"><label class="text-center" for="user-name">Enter Your Name</label>
+              <input type="text" class="form-control text-center" id="user-name" required>
+              <button type="submit" class="btn btn-primary submit">Submit</button></ul>
           </div>
         </div>
         <!-- Current Matches card -->
@@ -54,7 +101,7 @@
     </div>
 
 
-    <footer class="footer mt-5">
+    <footer class="footer mt-5 text-center">
       <div class="container">
         <p>Control Panel</p>
         <p><a href="#" id="clear">Clear User</a> | <a href="/api/friends">API Table Link</a> </p>
@@ -69,7 +116,21 @@
 <!-- BELOW CODE IS CRITICAL. IT HANDLES HOW FORM DATA IS LOADED FROM OUR SERVER -->
 <script type="text/javascript">
 
-// function fro the ajax method to populate the fields.
+  // initialize user name string and chosen boolean
+  var userName;
+  var chosen;
+  // create a submit function that captures the user name and removes the input field so it cannot be used again unless refreshed and also empties the friendsList so the query can be run again without repeat results
+  $(".submit").click(function () {
+    userName = $("#user-name").val().trim();
+    chosen = true
+    $("#friendList").empty();
+    $("#userInfo").empty();
+    runFriendsQuery();
+  });
+
+
+
+  // function fro the ajax method to populate the fields.
   function runFriendsQuery() {
     // The AJAX function uses the URL of our API to GET the data associated with it (initially set to localhost)
     $.ajax({ url: "/api/friends", method: "GET" })
@@ -84,21 +145,40 @@
 
           // Get a reference to the friendsList element and populate it with friends or the user if friendName = UserName
           var friendsList = $("#friendList");
-          var userName = $("#userInfo");
+          var userNameCard = $("#userInfo");
 
+          // setup a userArray for compatability score checks
+          if (userName === friendData[i].friendName) {
+            var userArray = friendData[i].answerArray
+          }
+          console.log(userArray)
 
-          // Then display the fields in the HTML (Section Name, Date, URL)
+          // set up a compatability score
+          var compatabilityScore;
+          if (chosen) {
+            // loop through bouth arrays and add one for every answer that is the same
+            for (var j = 0; j < friendData[i].answerArray; j++) {
+              if (friendData[i].answerArray === userArray[j]) {
+                compatabilityScore++;
+              }
+              compatabilityScore = ((compatabilityScore / 12) * 100) + "%"
+            }
+
+          }
+          console.log(compatabilityScore)
+
+          // Then display the fields in the HTML
           var listItem = $("<li class='card list-group-item mt-4 mb-5'>");
 
           // compatability score logic
-          if (friendData[i].compatabilityscore != null) {
+          if (compatabilityScore != null) {
             listItem.append(
               $("<h2>").text("Friends Name: " + friendData[i].friendName),
               $("<hr>"),
               $("<h2>").text("age: " + friendData[i].friendAge),
               $("<h2>").text("gender: " + friendData[i].friendGender),
 
-              $("<h2>").text("Compatability score: " + friendData[i].compatabilityscore)
+              $("<h2>").text("Compatability score: " + compatabilityScore)
             );
           }
           else {
@@ -112,7 +192,7 @@
             );
           }
           if (friendData[i].friendName === userName) {
-            userName.append(listItem);
+            userNameCard.append(listItem);
           }
           else {
             friendsList.append(listItem);

@@ -8,25 +8,72 @@
     <!-- Latest compiled and minified CSS & JS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="assets/styles/main.css">
     <script src="https://code.jquery.com/jquery.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
 </head>
 
 <body>
-
+    <style>
+        /* body styling */
+                body {
+                  background: url("https://media0.giphy.com/media/26ufcYAkp8e66vanu/giphy.gif?cid=3640f6095c196e07436d654a2eebe3f9");
+                  background-size: fit-content; 
+              }
+              /* jumbotron styling */
+              .jumbotron {
+                background: pink;
+                opacity: .9;
+              }
+              h1 {
+                color: blue;
+              }
+              
+              /* headers styling */
+              h2:first-child{
+                background: midnightblue;
+                color: lightblue;
+              }
+              h2 {
+                  color: blue;
+              }
+              h2:last-child {
+                border-bottom: 10px solid red;
+              }
+              /* card styling */
+              .card {
+                background: gray;
+                opacity: 0.9;
+              }
+              .card-header {
+                background: rgb(0, 142, 185);
+                color: white;
+              }
+              label{
+                color: deepskyblue;
+                width: 100%;
+                font-size: 1.5em;
+                border-bottom: 10px solid midnightblue
+              }
+              /* button styling */
+              .submit{
+                width: 100px;
+                margin: auto;
+              }
+            </style>
     <div class="container">
 
         <!-- Header -->
         <div class="jumbotron text-center">
             <h1>
-                <span> <i class="fa fa-gratipay"></i></span> FriendShip Survey</h1>
+                <span> <i class="fa fa-gratipay"></i></span> FriendShip Survey <span> <i class="fa fa-gratipay"></i></span></h1>
             <hr>
             <h2>Make your connection!</h2>
             <br>
             <div>
                 <a href="/">
-                    <button class="btn btn-lg btn-default">
+                    <button class="btn btn-lg btn-primary">
                         <span class="fa fa-home"></span>
                     </button>
                 </a>
@@ -39,138 +86,138 @@
                     <div class="card-header">
                         Friendly Survey
                     </div>
-                    <div class="card-body">
+                    <div class="card-body text-right">
                         <form role="form">
                             <div class="form-group">
                                 <label for="friend-name">Name*</label>
-                                <input type="text" class="form-control" id="friend-name" required>
+                                <input type="text" class="form-control text-right" id="friend-name" required>
                             </div>
                             <div class="form-group">
                                 <label for="friend-age">Age*</label>
-                                <input type="text" class="form-control" id="friend-age" required>
+                                <input type="text" class="form-control text-right" id="friend-age" required>
                             </div>
                             <div class="form-group">
                                 <label for="friend-gender">Gender*</label>
-                                <input type="text" class="form-control" id="friend-gender" required>
+                                <input type="text" class="form-control text-right" id="friend-gender" required>
                             </div>
                             <div class="form-group">
                                 <label for="ans1">It's important for you to be around your freinds everyday.</label>
                                 <select name="id" id="ans1">
-                                    <option value="1">1 (disagree)</option>
+                                    <option value="1">1 (strongly disagree)</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
                                     <option value="4">4</option>
-                                    <option value="5">5 (agree)</option>
+                                    <option value="5">5 (strongly agree)</option>
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="ans2">I'm a very happy person usually</label>
                                 <select name="id" id="ans2">
-                                    <option value="1">1 (disagree)</option>
+                                    <option value="1">1 (strongly disagree)</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
                                     <option value="4">4</option>
-                                    <option value="5">5 (agree)</option>
+                                    <option value="5">5 (strongly agree)</option>
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="ans3">People tend to enjoy conversations with me.</label>
                                 <select name="id" id="ans3">
-                                    <option value="1">1 (disagree)</option>
+                                    <option value="1">1 (strongly disagree)</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
                                     <option value="4">4</option>
-                                    <option value="5">5 (agree)</option>
+                                    <option value="5">5 (strongly agree)</option>
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="ans4">I like to stay in.</label>
                                 <select name="id" id="ans4">
-                                    <option value="1">1 (disagree)</option>
+                                    <option value="1">1 (strongly disagree)</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
                                     <option value="4">4</option>
-                                    <option value="5">5 (agree)</option>
+                                    <option value="5">5 (strongly agree)</option>
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="ans5">Friendship is important to me!</label>
                                 <select name="id" id="ans5">
-                                    <option value="1">1 (disagree)</option>
+                                    <option value="1">1 (strongly disagree)</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
                                     <option value="4">4</option>
-                                    <option value="5">5 (agree)</option>
+                                    <option value="5">5 (strongly agree)</option>
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="ans6">I am not afraid to express how i feel.</label>
                                 <select name="id" id="ans6">
-                                    <option value="1">1 (disagree)</option>
+                                    <option value="1">1 (strongly disagree)</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
                                     <option value="4">4</option>
-                                    <option value="5">5 (agree)</option>
+                                    <option value="5">5 (strongly agree)</option>
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="ans7">I am open to making new friends.</label>
                                 <select name="id" id="ans7">
-                                    <option value="1">1 (disagree)</option>
+                                    <option value="1">1 (strongly disagree)</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
                                     <option value="4">4</option>
-                                    <option value="5">5 (agree)</option>
+                                    <option value="5">5 (strongly agree)</option>
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="ans8">I like trying new things.</label>
                                 <select name="id" id="ans8">
-                                    <option value="1">1 (disagree)</option>
+                                    <option value="1">1 (strongly disagree)</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
                                     <option value="4">4</option>
-                                    <option value="5">5 (agree)</option>
+                                    <option value="5">5 (strongly agree)</option>
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="ans9">I like staying in my comfort zone.</label>
                                 <select name="id" id="ans9">
-                                    <option value="1">1 (disagree)</option>
+                                    <option value="1">1 (strongly disagree)</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
                                     <option value="4">4</option>
-                                    <option value="5">5 (agree)</option>
+                                    <option value="5">5 (strongly agree)</option>
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="ans10">I enjoy solitude.</label>
                                 <select name="id" id="ans10">
-                                    <option value="1">1 (disagree)</option>
+                                    <option value="1">1 (strongly disagree)</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
                                     <option value="4">4</option>
-                                    <option value="5">5 (agree)</option>
+                                    <option value="5">5 (strongly agree)</option>
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="ans11">Friends are very important to my happiness.</label>
                                 <select name="id" id="ans11">
-                                    <option value="1">1 (disagree)</option>
+                                    <option value="1">1 (strongly disagree)</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
                                     <option value="4">4</option>
-                                    <option value="5">5 (agree)</option>
+                                    <option value="5">5 (strongly agree)</option>
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="ans12">I love animals.</label>
                                 <select name="id" id="ans12">
-                                    <option value="1">1 (disagree)</option>
+                                    <option value="1">1 (strongly disagree)</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
                                     <option value="4">4</option>
-                                    <option value="5">5 (agree)</option>
+                                    <option value="5">5 (strongly agree)</option>
                                 </select>
                             </div>
                             <button type="submit" class="btn btn-primary submit">Submit</button>
@@ -181,7 +228,7 @@
         </div>
 
 
-        <footer class="footer mt-5">
+        <footer class="footer mt-5 text-center">
             <div class="container">
                 <p>
                     <a href="/api/friends">API Table Link</a>
@@ -198,7 +245,7 @@
 <!-- BELOW CODE IS CRITICAL. IT HANDLES HOW FORM DATA IS SENT TO OUR SERVER -->
 <script type="text/javascript">
 
-// create the submit fucntion that will grab the data and reset the survey
+    // create the submit fucntion that will grab the data and reset the survey
     $(".submit").on("click", function (event) {
         event.preventDefault();
 
@@ -210,7 +257,7 @@
             i++;
         };
         console.log(array);
-        
+
 
         // Here we grab the form elements
         var newFriend = {
