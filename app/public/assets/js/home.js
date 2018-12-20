@@ -47,22 +47,36 @@ function runFriendsQuery() {
                             compatabilityScore++;
                         }
                     }
-                    // put into percent style and round
-                    compatabilityScore = Math.round(((compatabilityScore / 12) * 100))
+                    // round and put into percent style and round
+                    compatabilityScore = Math.round(compatabilityScore / 12 * 100);
                 }
 
                 // Then display the fields in the HTML
                 var listItem = $("<li class='card list-group-item text-center mt-4 mb-5'>");
 
-                // if compatability score higher than 60 show facebook connect info
-                if (compatabilityScore >= 60) {
+                // if userName personalize message
+                if (friendData[i].friendName === userName) {
                     listItem.append(
                         $("<h2>").text("Friends Name: " + friendData[i].friendName),
                         $("<hr>"),
                         $("<h2>").text("Age: " + friendData[i].friendAge),
                         $("<h2>").text("Gender: " + friendData[i].friendGender),
 
-                        $("<h2>").text("You have a high compatability score with this person of: " + compatabilityScore + "%"),
+                        $("<h2>").html("<h2 style='border-bottom: none'>You have a high compatability score with Yourself: " + compatabilityScore + "% <span> <i class='fa fa-gratipay'></i></span> </h2>"),
+                        $("<br>"),
+                        $("<h2>").text("Become freinds with Yourself on FaceBook Because you're awesome: "),
+                        $("<h2>").html("<a href=" + friendData[i].friendFB + " target='blank'>" + friendData[i].friendFB + "</a>")
+                    );
+                }
+                // if compatability score higher than 60 show facebook connect info               
+                else if (compatabilityScore >= 60) {
+                    listItem.append(
+                        $("<h2>").text("Friends Name: " + friendData[i].friendName),
+                        $("<hr>"),
+                        $("<h2>").text("Age: " + friendData[i].friendAge),
+                        $("<h2>").text("Gender: " + friendData[i].friendGender),
+
+                        $("<h2>").html("<h2 style='border-bottom: none'>You have a high compatability score with this person: " + compatabilityScore + "% <span> <i class='fa fa-gratipay'></i></span> </h2>"),
                         $("<br>"),
                         $("<h2>").text("Become freinds with them on facebook at: "),
                         $("<h2>").html("<a href=" + friendData[i].friendFB + " target='blank'>" + friendData[i].friendFB + "</a>")
@@ -79,6 +93,7 @@ function runFriendsQuery() {
                         $("<h2>").text("Compatability score: " + compatabilityScore + "%")
                     );
                 }
+                // run if survey hasn't been taken yet
                 else {
                     listItem.append(
                         $("<h2>").text("Friends Name: " + friendData[i].friendName),

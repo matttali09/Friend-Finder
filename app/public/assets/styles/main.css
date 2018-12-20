@@ -18,10 +18,11 @@
       color: lightblue;
     }
     h2 {
+      font-size: 37px;
       color: blue;
     }
     h2:last-child {
-      border-bottom: 10px solid red;
+      border-bottom: 10px solid deepskyblue;
     }
     /* card styling */
     .card {

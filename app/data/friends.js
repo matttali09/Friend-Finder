@@ -35,12 +35,26 @@ var friendData = [
     answerArray: ["5", "5", "5", "5", "5", "5", "5", "5", "5", "5", "5", "5"],
   },
   {
+    friendName: "Link",
+    friendAge: "17",
+    friendGender: "Male",
+    friendFB: "https://www.facebook.com/ZeldaLinkHylian/",
+    answerArray: ["5", "5", "5", "5", "5", "5", "5", "5", "5", "5", "5", "5"],
+  },
+  {
+    friendName: "Leslie Cameron",
+    friendAge: "24",
+    friendGender: "Female",
+    friendFB: "https://www.facebook.com/leslie.cameron.73",
+    answerArray: ["3", "5", "4", "5", "5", "5", "3", "5", "5", "5", "5", "5"],
+  },
+  { 
     friendName: "Matthew Taliancich",
-    friendAge: "25",
+    friendAge: "27",
     friendGender: "Male",
     friendFB: "https://www.facebook.com/matt.taliancich",
-    answerArray: ["3", "5", "4", "5", "5", "5", "3", "5", "3", "5", "5", "5"],
-  },
+    answerArray: ["3", "5", "4", "5", "5", "5", "3", "5", "5", "5", "5", "5"],
+  }
 ];
 
 // Note how we export the array. This makes it accessible to other files using require.
