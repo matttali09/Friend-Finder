@@ -1,7 +1,8 @@
 // create the submit fucntion that will grab the data and reset the survey
 $(".submit").on("click", function (event) {
     event.preventDefault();
-
+// add logic for required fields
+if ($("#friend-name").val() == null || $("#friend-age").val() == null || $("#friend-gender").val() == null || $("#friend-FB").val() == null) {
     // create array for answersArray value can be stored
     var array = [];
     var i = 1;
@@ -17,7 +18,7 @@ $(".submit").on("click", function (event) {
         friendName: $("#friend-name").val().trim(),
         friendAge: $("#friend-age").val().trim(),
         friendGender: $("#friend-gender").val().trim(),
-        freindFB: $("#friend-FB").val().trim(),
+        friendFB: $("#friend-FB").val().trim(),
         answerArray: array
     };
 
@@ -43,5 +44,8 @@ $(".submit").on("click", function (event) {
             res.redirect("/survey");
 
         });
-
+    }
+    else {
+        alert("Please Fill Out the Required Fields Friend! (*)")
+    }
 });
