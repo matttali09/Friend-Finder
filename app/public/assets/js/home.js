@@ -4,10 +4,20 @@ var chosen = false;
 // create a submit function that captures the user name and removes the input field so it cannot be used again unless refreshed and also empties the friendsList so the query can be run again without repeat results
 $(".submit").click(function () {
     userName = $("#user-name").val().trim();
-    chosen = true;
-    $("#friendList").empty();
-    $("#userInfo").empty();
-    runFriendsQuery();
+    $.ajax({ url: "/api/friends", method: "GET" })
+    .then(function (friendData) {
+        for (var i = 0; i < friendData.length; i++) {
+            if (userName === friendData[i].friendName) {
+                chosen = true;
+                $("#friendList").empty();
+                $("#userInfo").empty();
+                runFriendsQuery();
+            }
+
+        }
+        alert("Thank you for entering your name :) if your profile does not display it is because the name entered did not match our records");
+
+    });
 });
 
 
